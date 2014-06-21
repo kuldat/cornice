@@ -494,3 +494,10 @@ class TestService(TestCase):
         self.assertEqual(ret, ['douggy', 'rusty'])
         self.assertEqual(dummy_request, DummyAPI.last_request)
         self.assertIsNone(DummyAPI.last_context)
+
+    def test_decorate_view(self):
+        def myfunction():
+            pass
+
+        decorated = decorate_view(myfunction, {}, 'POST')
+        self.assertEqual(decorated.__name__, myfunction.__name__)

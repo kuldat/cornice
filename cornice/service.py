@@ -529,5 +529,6 @@ def decorate_view(view, args, method):
         return response
 
     # return the wrapper, not the function, keep the same signature
-    functools.wraps(wrapper)
-    return wrapper
+    if is_string(view):
+        return wrapper
+    return functools.wraps(view)(wrapper)
